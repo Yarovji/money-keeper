@@ -1,0 +1,24 @@
+<div class="title-block">
+    <h3 class="title pull-left">
+        Сторінка історії <span class="sparkline bar"></span>
+    </h3>
+    <div class="pull-right">
+        <button class="btn-sm btn btn-primary-outline" (click)="openFilter()">
+            <i class="fa fa-filter"></i>
+        </button>
+    </div>
+</div>
+
+<div *ngIf="!isLoaded">
+    <alc-loader></alc-loader>
+</div>
+
+<div *ngIf="isLoaded">
+    <alc-history-chart [data]="chartData"></alc-history-chart>
+
+    <alc-history-events [categories]="categories" [events]="filteredEvents"></alc-history-events>
+
+    <div *ngIf="isFilterVisible">
+        <alc-history-filter [categories]="categories" (filterApply)="filterApply($event)" (filterCancel)="filterCancel()"></alc-history-filter>
+    </div>
+</div>

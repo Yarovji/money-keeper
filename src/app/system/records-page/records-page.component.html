@@ -1,0 +1,27 @@
+<div class="title-block">
+    <h3 class="title">
+        Сторінка записів <span class="sparkline bar"></span>
+    </h3>
+</div>
+
+<section class="section text-center" *ngIf="!isLoaded">
+    <alc-loader></alc-loader>
+</section>
+
+<section class="section" *ngIf="isLoaded">
+    <div class="row">
+        <div class="col-md-6">
+            <alc-add-category (categoryAdd)="newCategoryAdded($event)"></alc-add-category>
+        </div>
+
+        <div class="col-md-6">
+            <alc-add-event [categories]="categories"></alc-add-event>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <alc-edit-category [categories]="categories" (categoryEdit)="categoryWhasEdit($event)"></alc-edit-category>
+        </div>
+    </div>
+</section>

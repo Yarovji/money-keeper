@@ -1,0 +1,35 @@
+<p class="text-xs-center">Увійдіть для роботи</p>
+
+<div class="alert alert-{{ message.type }}" *ngIf="message.text" @fade>
+    {{ message.text }}
+</div>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group" [ngClass]="{'has-error': form.get('email').invalid && form.get('email').touched}">
+        <label for="email">Email</label>
+        <input type="text" class="form-control underlined" id="email" placeholder="Введите ваш e-mail" formControlName="email">
+        <span class="form-help-text" *ngIf="form.get('email').invalid && form.get('email').touched">
+            <span *ngIf="form.get('email')['errors']['required']">E-mail не може бути пустим.</span>
+            <span *ngIf="form.get('email')['errors']['email']">Введіть коректний e-mail.</span>
+        </span>
+    </div>
+    <div class="form-group" [ngClass]="{'has-error': form.get('password').invalid && form.get('password').touched}">
+        <label for="password">Пароль</label>
+        <input type="password" class="form-control underlined" id="password" placeholder="Пароль" formControlName="password">
+        <span class="form-help-text" *ngIf="form.get('password').invalid && form.get('password').touched">
+            <span *ngIf="form.get('password')['errors']['required']">Пароль не може бути пустим.</span>
+            <span *ngIf="form.get('password')['errors']['minlength'] && form.get('password')['errors']['minlength']['requiredLength']">
+                Пароль повинен бути більше {{ form.get ('password')['errors']['minlength']['requiredLength'] }} символів.
+                Зараз {{ form.get ('password')['errors']['minlength']['actualLength'] }}.
+            </span>
+        </span>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-block btn-primary" [disabled]="form.invalid">Увійти</button>
+    </div>
+    <div class="form-group">
+        <p class="text-muted text-xs-center">
+            Нема акаунта? <a [routerLink]="'/registration'">Зареєструватися!</a>
+        </p>
+    </div>
+</form>

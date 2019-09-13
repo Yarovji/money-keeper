@@ -1,0 +1,33 @@
+{
+  "users": [
+    {
+      "email": "miznikov.1995@mail.ru",
+      "password": "123456789",
+      "name": "Владислав",
+      "id": 1
+    },
+    {
+      "email": "admin1@i.ua",
+      "password": "111111",
+      "name": "WwW",
+      "id": 2
+    }
+  ],
+  "bill": [
+    {
+      "user_id": 1,
+      "value": 91900,
+      "currency": "UAH",
+      "id": 1
+    },
+    {
+      "user_id": 2,
+      "value": 3450,
+      "currency": "UAH",
+      "id": 2
+    }
+  ],
+  "categories": [
+
+  ]
+}

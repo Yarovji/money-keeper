@@ -1,0 +1,50 @@
+<div class="title-block">
+    <h3 class="title">
+        Сторінка планування<span class="sparkline bar"></span>
+    </h3>
+</div>
+
+<section class="section" *ngIf="!isLoaded">
+    <alc-loader></alc-loader>
+</section>
+
+<section class="section" *ngIf="isLoaded">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-sm bordered">
+                    <div class="header-block">
+                        <h3 class="title">Розходи</h3>
+                    </div>
+                    <h5 class="planning-expenses pull-right">
+                        Загальний залишок: <span class="text-success">{{ bill.value | currency:'UAH':'':'1.2-2':'ru-RU' }} &#8372;</span>
+                    </h5>
+                </div>
+                <div class="card-block">
+                    <div class="row" *ngFor="let category of categories">
+                        <div class="col-xs-6">
+                            <div class="n-progress">
+                                <div class="progress-bar {{ getCatColorClass(category) }}" [ngStyle]="{width:getCatPercent(category)}">
+                                    <span>{{ category.name }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <p>
+                                <span class="text-{{ getCatColorClass(category) }}">
+                                    {{ getCategoryCost(category) | currency:'UAH':'':'1.2-2':'ru-RU' }}
+                                </span> із
+                                <span class="text-primary">
+                                    {{ category.capacity | currency:'UAH':'':'1.2-2':'ru-RU' }}
+                                </span> | залишок
+                                <span class="text-{{ getCatColorClass(category) }}">
+                                    {{ category.capacity - getCategoryCost(category) | currency:'UAH':'':'1.2-2':'ru-RU' }}
+                                </span> (грн.)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

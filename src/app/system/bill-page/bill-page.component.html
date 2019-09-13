@@ -1,0 +1,21 @@
+<div class="title-block">
+    <h3 class="title pull-left">
+        Сторінка рахунка <span class="sparkline bar"></span>
+    </h3>
+    <div class="pull-right">
+        <button class="btn-sm btn btn-primary-outline" (click)="onRefresh()">
+            <i class="fa fa-refresh"></i>
+        </button>
+    </div>
+</div>
+<section class="section">
+    <div class="row text-center" *ngIf="!isLoaded">
+        <alc-loader></alc-loader>
+    </div>
+
+    <div class="row" *ngIf="isLoaded">
+        <alc-bill-card [bill]="bill" [currency]="currency"></alc-bill-card>
+
+        <alc-currency-card [currency]="currency"></alc-currency-card>
+    </div>
+</section>
